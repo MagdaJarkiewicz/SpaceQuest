@@ -6,23 +6,31 @@ var ctx = canvas.getContext("2d");
 
 var state = {
   spaceShip: {
-    x: 100,
-    y: 75,
+    x: canvas.width/6,
+    y: canvas.height/3,
     speed: 1,
   },
 };
 
-function clearCanvas(e) {
-    ctx.fillStyle = "white";
-    ctx.fillRect(0,0,window.innerWidth,window.innerHeight);
+function clearCanvas(ctx, image) {
+  if (!image.complete) {
+    setTimeout(function(){
+      clearCanvas(ctx,image);
+    }, 150)
+    return
+  }
+  ctx.drawImage(background, 0, 0, window.innerWidth, window.innerHeight);
 }
 
-// function moveSpaceShip() {
-//   state.spaceShip.y+=state.spaceShip.speed
-//   if (state.spaceShip.y+state.spaceShip.size > canvas.height) {
-//     console.log("Game Over!");
-//   }
-// }
+var background = new Image();
+background.src = '../spaceQuest/img/background.jpg';
+
+ // function moveSpaceShip() {
+ //   state.spaceShip.y+=state.spaceShip.speed
+ //   if (state.spaceShip.y+state.spaceShip.size > canvas.height) {
+ //     console.log("Game Over!");
+ //   }
+ // }
 
 
 function drawSpaceShip (ctx,image) {
@@ -36,7 +44,7 @@ function drawSpaceShip (ctx,image) {
 }
 
 var image = new Image();
-image.src = '../spaceQuest/img/spaceship.png';
+image.src = '../spaceQuest/img/anotheralien.png';
 
 
 
@@ -44,7 +52,9 @@ image.src = '../spaceQuest/img/spaceship.png';
 // function drawPipes () {
 //
 // };
- drawSpaceShip(ctx,image);
+
+ clearCanvas(ctx,image);
+  drawSpaceShip(ctx,image);
 //
 // function animate() {
 //     clearCanvas();
