@@ -1,5 +1,5 @@
-
-* {
+/*
+{
   box-sizing: border-box;
 }
 
@@ -16,11 +16,9 @@ header {
 header img {
   height: 5em;
   padding: 1em;
-}
+} */
 
 canvas {
-  width: 500px;
-  height: 300px;
   margin: auto;
   display: block;
   border: 2px solid black;

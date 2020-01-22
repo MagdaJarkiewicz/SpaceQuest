@@ -1,51 +1,60 @@
+var canvas = document.querySelector("#screen")
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+var ctx = canvas.getContext("2d");
+
 var state = {
-  bird: {
+  spaceShip: {
     x: 100,
     y: 75,
-    size: 50,
-    color: "teal",
     speed: 1,
   },
 };
 
-var canvas = document.querySelector("#screen")
-  canvas.width = 500;
-  canvas.height = 300;
-
-var ctx = canvas.getContext("2d");
-
 function clearCanvas(e) {
     ctx.fillStyle = "white";
-    ctx.fillRect(0,0,500,300);
+    ctx.fillRect(0,0,window.innerWidth,window.innerHeight);
 }
 
-function moveBird() {
-  state.bird.y+=state.bird.speed
-  if (state.bird.y+state.bird.size > canvas.height) {
-    console.log("Game Over!");
+// function moveSpaceShip() {
+//   state.spaceShip.y+=state.spaceShip.speed
+//   if (state.spaceShip.y+state.spaceShip.size > canvas.height) {
+//     console.log("Game Over!");
+//   }
+// }
+
+
+function drawSpaceShip (ctx,image) {
+  if (!image.complete) {
+    setTimeout(function(){
+      drawSpaceShip(ctx,image);
+    }, 150)
+    return
   }
+  ctx.drawImage(image, state.spaceShip.x, state.spaceShip.y, 150, 150);
 }
 
-function drawBird () {
-  ctx.fillStyle = state.bird.color;
-  ctx.fillRect(state.bird.x, state.bird.y, state.bird.size, state.bird.size);
-};
+var image = new Image();
+image.src = '../spaceQuest/img/spaceship.png';
 
-function drawPipes () {
 
-};
 
-drawBird();
 
-function animate() {
-    clearCanvas();
-    drawBird();
-    moveBird();
-};
-
-setInterval(animate, 30);
-
-function flyBird(e) {
-    state.bird.y=state.bird.y-10;
-  };
-body.addEventListener("click", flyBird);
+// function drawPipes () {
+//
+// };
+ drawSpaceShip(ctx,image);
+//
+// function animate() {
+//     clearCanvas();
+//     drawspaceShip();
+//     movespaceShip();
+// };
+//
+// setInterval(animate, 30);
+//
+// function flySpaceShip(e) {
+//     state.spaceShip.y=state.spaceShip.y-10;
+//   };
+// body.addEventListener("click", flySpaceShip);
