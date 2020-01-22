@@ -25,12 +25,12 @@ function clearCanvas(ctx, image) {
 var background = new Image();
 background.src = '../spaceQuest/img/background.jpg';
 
- // function moveSpaceShip() {
- //   state.spaceShip.y+=state.spaceShip.speed
- //   if (state.spaceShip.y+state.spaceShip.size > canvas.height) {
- //     console.log("Game Over!");
- //   }
- // }
+ function moveSpaceShip() {
+   state.spaceShip.y+=state.spaceShip.speed
+   if (state.spaceShip.y+state.spaceShip.size > canvas.height) {
+     console.log("Game Over!");
+   }
+ }
 
 
 function drawSpaceShip (ctx,image) {
@@ -49,22 +49,25 @@ image.src = '../spaceQuest/img/anotheralien.png';
 
 
 
-// function drawPipes () {
+// function drawAsteroids () {
 //
 // };
 
  clearCanvas(ctx,image);
   drawSpaceShip(ctx,image);
-//
-// function animate() {
-//     clearCanvas();
-//     drawspaceShip();
-//     movespaceShip();
-// };
-//
-// setInterval(animate, 30);
-//
-// function flySpaceShip(e) {
-//     state.spaceShip.y=state.spaceShip.y-10;
-//   };
-// body.addEventListener("click", flySpaceShip);
+
+function animate() {
+    clearCanvas(ctx,image);
+    drawSpaceShip(ctx,image);
+    moveSpaceShip();
+};
+
+setInterval(animate, 30);
+
+  function flySpaceShip (e) {
+    if (e.code==='ArrowUp') {
+        state.spaceShip.y=state.spaceShip.y-10;
+      }
+      drawSpaceShip(ctx, image)
+  }
+body.addEventListener("keydown", flySpaceShip);
