@@ -63,12 +63,12 @@ function drawAsteroids (ctx,asteroid) {
   if (!asteroid.complete) {
     setTimeout(function(){
       drawAsteroids(ctx,asteroid);
-    }, 100)
+    }, 150)
     return
   }
   ctx.drawImage(asteroid, state.asteroids.x, state.asteroids.y, 150, 100);
 }
-function asteroidsMOve () {
+function asteroidsMove(){
     state.asteroids.x-=state.asteroids.speed
 };
 
