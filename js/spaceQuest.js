@@ -4,13 +4,22 @@ var canvas = document.querySelector("#screen")
 
 var ctx = canvas.getContext("2d");
 
+function randomPosition(min, max) {
+  return Math.floor(Math.random() * (max - min) ) + min;
+}
+
+
 var state = {
   spaceShip: {
     x: canvas.width/6,
     y: canvas.height/3,
     speed: 1,
   },
-};
+  asteroids: {
+    x: canvas.width-150,
+    y: randomPosition(1, canvas.height),
+    speed: 3,
+}}
 
 function clearCanvas(ctx, image) {
   if (!image.complete) {
@@ -46,20 +55,30 @@ function drawSpaceShip (ctx,image) {
 var image = new Image();
 image.src = '../spaceQuest/img/anotheralien.png';
 
+var asteroid = new Image();
+asteroid.src = '../spaceQuest/img/newasteroid.png';
 
 
+function drawAsteroids (ctx,asteroid) {
+  if (!asteroid.complete) {
+    setTimeout(function(){
+      drawAsteroids(ctx,asteroid);
+    }, 100)
+    return
+  }
+  ctx.drawImage(asteroid, state.asteroids.x, state.asteroids.y, 150, 100);
+}
+function asteroidsMOve () {
+    state.asteroids.x-=state.asteroids.speed
+};
 
-// function drawAsteroids () {
-//
-// };
-
- clearCanvas(ctx,image);
-  drawSpaceShip(ctx,image);
 
 function animate() {
     clearCanvas(ctx,image);
     drawSpaceShip(ctx,image);
     moveSpaceShip();
+    drawAsteroids(ctx,asteroid);
+    asteroidsMove();
 };
 
 setInterval(animate, 30);
