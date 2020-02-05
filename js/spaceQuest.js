@@ -21,6 +21,7 @@ var state = {
     speed: 3,
 }}
 
+// background
 function clearCanvas(ctx, image) {
   if (!image.complete) {
     setTimeout(function(){
@@ -33,6 +34,8 @@ function clearCanvas(ctx, image) {
 
 var background = new Image();
 background.src = '../spaceQuest/img/background.jpg';
+
+// The spaceship draw + move
 
  function moveSpaceShip() {
    state.spaceShip.y+=state.spaceShip.speed
@@ -58,6 +61,14 @@ image.src = '../spaceQuest/img/anotheralien.png';
 var asteroid = new Image();
 asteroid.src = '../spaceQuest/img/newasteroid.png';
 
+function flySpaceShip (e) {
+  if (e.code==='ArrowUp') {
+      state.spaceShip.y=state.spaceShip.y-10;
+    }
+    drawSpaceShip(ctx, image)
+}
+body.addEventListener("keydown", flySpaceShip);
+// Asteroids
 
 function drawAsteroids (ctx,asteroid) {
   if (!asteroid.complete) {
@@ -67,11 +78,24 @@ function drawAsteroids (ctx,asteroid) {
     return
   }
   ctx.drawImage(asteroid, state.asteroids.x, state.asteroids.y, 150, 100);
+
 }
 function asteroidsMove(){
     state.asteroids.x-=state.asteroids.speed
-};
+  }
 
+    function collisions(){
+        if (
+          state.asteroids.x <= state.spaceShip.x &&
+          state.asteroids.y <= state.spaceShip.y+150 &&
+          state.asteroids.y > state.spaceShip.y-150)
+          {console.log("You crashed!");
+          // mySound.play();
+           setTimeout(function() { delayed(); }, 50);
+          function delayed () {window.location.replace("gameover.html")}
+} };
+
+// Animate
 
 function animate() {
     clearCanvas(ctx,image);
@@ -79,14 +103,7 @@ function animate() {
     moveSpaceShip();
     drawAsteroids(ctx,asteroid);
     asteroidsMove();
+    collisions();
 };
 
 setInterval(animate, 30);
-
-  function flySpaceShip (e) {
-    if (e.code==='ArrowUp') {
-        state.spaceShip.y=state.spaceShip.y-10;
-      }
-      drawSpaceShip(ctx, image)
-  }
-body.addEventListener("keydown", flySpaceShip);
