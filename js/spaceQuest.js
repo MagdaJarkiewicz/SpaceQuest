@@ -84,14 +84,16 @@ function asteroidsMove(){
     state.asteroids.x-=state.asteroids.speed
   }
 
+   var mySound = new Audio("../spaceQuest/sound/explosion.mp3");
+
     function collisions(){
         if (
           state.asteroids.x <= state.spaceShip.x &&
           state.asteroids.y <= state.spaceShip.y+150 &&
           state.asteroids.y > state.spaceShip.y-150)
           {console.log("You crashed!");
-          // mySound.play();
-           setTimeout(function() { delayed(); }, 50);
+          mySound.play();
+           setTimeout(function() { delayed(); }, 2500);
           function delayed () {window.location.replace("gameover.html")}
 } };
 
