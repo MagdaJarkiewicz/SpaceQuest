@@ -12,6 +12,7 @@ body{
   left: 0;
   will-change: transform;
   z-index: -1; */
+  text-align: center;
 }
 
 h1 {
@@ -24,6 +25,16 @@ h1 {
   animation-name: slidein;
 }
 
+button {
+  font-size: 2.5em;
+  font-family: 'Roboto', sans-serif;
+  margin-top:2.5em;
+  text-align: center;
+  padding: 0.5em;
+  border-radius: 50%;
+  margin-left: auto;
+ }
+
 @keyframes slidein {
   from {
     margin-top: 0%;
@@ -31,3 +42,7 @@ h1 {
 to {
   margin-top: 50%;
 }
+
+
+
+
