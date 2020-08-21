@@ -21,7 +21,7 @@ h1 {
   padding-top: 0.25em;
   color: #FFF;
   font-family: 'Roboto', sans-serif;
-  animation-duration: 10s;
+  animation-duration: 8s;
   animation-name: slidein;
 }
 
@@ -33,6 +33,10 @@ button {
   padding: 0.5em;
   border-radius: 50%;
   margin-left: auto;
+  background-color: #7bae33;
+  color: #FFF;
+  border-color: #FFF;
+  border-width: 0.2em;
  }
 
 @keyframes slidein {

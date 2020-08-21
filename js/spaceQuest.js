@@ -109,3 +109,6 @@ function animate() {
 };
 
 setInterval(animate, 30);
+
+document.getElementById("pAButton").onclick = playAgain () {
+  location.href = "index.html";
