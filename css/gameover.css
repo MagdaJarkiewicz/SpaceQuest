@@ -25,6 +25,8 @@ h1 {
   animation-name: slidein;
 }
 
+
+
 button {
   font-size: 2.5em;
   font-family: 'Roboto', sans-serif;
@@ -37,7 +39,17 @@ button {
   color: #FFF;
   border-color: #FFF;
   border-width: 0.2em;
+  animation-duration: 10s;
+  animation-name: fadein;
  }
+
+
+ @keyframes fadein {
+  from {opacity: 0;}
+  to { opacity: 1;}
+
+  }
+}
 
 @keyframes slidein {
   from {
